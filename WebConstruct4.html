@@ -1,0 +1,1026 @@
+<html><head><style>body { font-family: monospace; background:#141414; color:#fff; }</style></head><body><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chandani and Burns | Speech-Language Therapy</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#1e293b',
+                        'brand-primary': '#4a6fa5', // Calming Blue
+                        'brand-secondary': '#88b0c8', // Soft Blue
+                        'brand-accent': '#e0f2fe', // Very light blue
+                        'brand-warm': '#f8fafc', // Off white
+                        'brand-text': '#334155',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garmond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                        'fade-in': 'fadeIn 1.5s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* Page Transitions */
+        .page-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .page-section.active {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Hero Overlay */
+        .hero-pattern {
+            background-color: #ffffff;
+            opacity: 0.8;
+            background-image:  radial-gradient(#4a6fa5 0.5px, transparent 0.5px), radial-gradient(#4a6fa5 0.5px, #ffffff 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+        
+        .blob {
+            position: absolute;
+            filter: blur(40px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-sans text-brand-text bg-brand-warm antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="navigateTo('home')">
+                    <div class="w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center text-white mr-3">
+                        <i class="fa-solid fa-comments text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-serif text-2xl font-bold text-brand-dark tracking-wide">Chandani & Burns</h1>
+                        <p class="text-xs text-brand-primary tracking-widest uppercase">Speech Therapy</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <button onclick="navigateTo('home')" class="nav-link text-brand-dark hover:text-brand-primary transition-colors text-sm font-medium uppercase tracking-wider">Home</button>
+                    <button onclick="navigateTo('about')" class="nav-link text-brand-text hover:text-brand-primary transition-colors text-sm font-medium uppercase tracking-wider">About Us</button>
+                    <button onclick="navigateTo('services')" class="nav-link text-brand-text hover:text-brand-primary transition-colors text-sm font-medium uppercase tracking-wider">Services</button>
+                    <button onclick="navigateTo('resources')" class="nav-link text-brand-text hover:text-brand-primary transition-colors text-sm font-medium uppercase tracking-wider">Resources</button>
+                    <button onclick="navigateTo('careers')" class="nav-link text-brand-text hover:text-brand-primary transition-colors text-sm font-medium uppercase tracking-wider">Careers</button>
+                    <button onclick="navigateTo('testimonials')" class="nav-link text-brand-text hover:text-brand-primary transition-colors text-sm font-medium uppercase tracking-wider">Testimonials</button>
+                    <button onclick="navigateTo('contact')" class="px-6 py-2 bg-brand-primary text-white rounded-full hover:bg-brand-dark transition-all transform hover:scale-105 shadow-md text-sm font-medium uppercase tracking-wider">Contact</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-dark hover:text-brand-primary focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <button onclick="navigateTo('home')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-accent rounded-md">Home</button>
+                <button onclick="navigateTo('about')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-accent rounded-md">About Us</button>
+                <button onclick="navigateTo('services')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-accent rounded-md">Services</button>
+                <button onclick="navigateTo('resources')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-accent rounded-md">Resources</button>
+                <button onclick="navigateTo('careers')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-accent rounded-md">Careers</button>
+                <button onclick="navigateTo('testimonials')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-accent rounded-md">Testimonials</button>
+                <button onclick="navigateTo('contact')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-primary font-bold hover:bg-brand-accent rounded-md">Contact Us</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="pt-24 min-h-screen relative overflow-hidden">
+        
+        <!-- Decorative Background Blobs -->
+        <div class="blob bg-blue-200 w-96 h-96 rounded-full top-0 -left-20"></div>
+        <div class="blob bg-green-100 w-80 h-80 rounded-full bottom-0 -right-20 animation-delay-2000"></div>
+
+        <!-- ================= HOME PAGE ================= -->
+        <section id="home" class="page-section active">
+            <!-- Hero Section -->
+            <div class="relative w-full overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-24 md:pt-20 md:pb-32">
+                    <div class="flex flex-col md:flex-row items-center">
+                        
+                        <!-- Hero Text -->
+                        <div class="w-full md:w-1/2 z-10 animate-fade-in-up">
+                            <div class="inline-block px-4 py-1 mb-6 bg-brand-accent text-brand-primary rounded-full text-xs font-bold tracking-widest uppercase">
+                                Welcome to Chandani & Burns
+                            </div>
+                            <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl font-medium text-brand-dark leading-tight mb-6">
+                                Finding your <br> <span class="text-brand-primary italic">voice</span>, together.
+                            </h2>
+                            <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg">
+                                We are a team of dedicated and compassionate professionals providing in-person and online speech-language therapy in the North Shore and Chicagoland area.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button onclick="navigateTo('contact')" class="px-8 py-4 bg-brand-primary text-white rounded-full font-medium shadow-lg hover:shadow-xl hover:bg-brand-dark transition-all transform hover:-translate-y-1">
+                                    Let's Connect
+                                </button>
+                                <button onclick="navigateTo('services')" class="px-8 py-4 bg-white text-brand-primary border border-brand-primary rounded-full font-medium hover:bg-brand-accent transition-all">
+                                    Our Services
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Hero Image/Graphic -->
+                        <div class="w-full md:w-1/2 mt-12 md:mt-0 relative z-0">
+                            <div class="relative rounded-2xl overflow-hidden shadow-2xl animate-fade-in" style="animation-delay: 0.3s;">
+                                <!-- Placeholder for a warm, professional image -->
+                                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Speech Therapy Session" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/40 to-transparent"></div>
+                                <div class="absolute bottom-6 left-6 text-white">
+                                    <p class="font-serif text-xl italic">"Compassionate Care."</p>
+                                </div>
+                            </div>
+                            <!-- Floating Card -->
+                            <div class="absolute -bottom-6 -left-6 md:-left-10 bg-white p-6 rounded-xl shadow-xl max-w-xs animate-float hidden md:block">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                        <i class="fa-solid fa-child-reaching text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-brand-dark">Pediatric & Adult</p>
+                                        <p class="text-xs text-gray-500">Specialized Therapy</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Grid Section -->
+            <div class="bg-white py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        
+                        <!-- Location Card -->
+                        <div class="group bg-brand-warm rounded-2xl p-8 hover:shadow-lg transition-all border border-gray-100">
+                            <div class="w-12 h-12 bg-brand-primary/10 rounded-xl flex items-center justify-center text-brand-primary mb-6 group-hover:bg-brand-primary group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-location-dot text-xl"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl text-brand-dark mb-4">Visit Us</h3>
+                            <p class="text-gray-600 mb-4">
+                                We are conveniently located in Skokie, with ample parking.
+                            </p>
+                            <address class="not-italic text-gray-800 font-medium">
+                                4711 Golf Road, Suite 100<br>
+                                Skokie, IL 60076
+                            </address>
+                        </div>
+
+                        <!-- Insurance Card -->
+                        <div class="group bg-brand-warm rounded-2xl p-8 hover:shadow-lg transition-all border border-gray-100">
+                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-file-invoice-dollar text-xl"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl text-brand-dark mb-4">Insurance</h3>
+                            <p class="text-gray-600 text-sm mb-4">
+                                We accept <strong>Blue Cross Blue Shield PPO</strong> and <strong>Blue Choice PPO</strong>.
+                            </p>
+                            <p class="text-gray-500 text-xs leading-relaxed">
+                                For other providers, we are out-of-network. Payment is due at time of service; we provide invoices for your submission.
+                            </p>
+                        </div>
+
+                        <!-- Contact Card -->
+                        <div class="group bg-brand-warm rounded-2xl p-8 hover:shadow-lg transition-all border border-gray-100">
+                            <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center text-teal-600 mb-6 group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-envelope text-xl"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl text-brand-dark mb-4">Get in Touch</h3>
+                            <p class="text-gray-600 mb-4">
+                                For more information or to schedule an evaluation.
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <p><i class="fa-solid fa-envelope mr-2 text-brand-primary"></i> <a href="mailto:chandaniandburns@gmail.com" class="hover:underline">chandaniandburns@gmail.com</a></p>
+                                <p><i class="fa-solid fa-phone mr-2 text-brand-primary"></i> (847) 679-8635</p>
+                                <p><i class="fa-solid fa-fax mr-2 text-brand-primary"></i> (847) 679-8657</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Strip -->
+            <div class="bg-brand-primary py-16 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10">
+                    <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
+                    </svg>
+                </div>
+                <div class="max-w-4xl mx-auto text-center px-4 relative z-10">
+                    <h2 class="font-serif text-3xl md:text-4xl text-white mb-6">Ready to start your journey?</h2>
+                    <p class="text-blue-100 mb-8 text-lg">We look forward to seeing you at our Skokie office.</p>
+                    <button onclick="navigateTo('contact')" class="px-10 py-4 bg-white text-brand-primary font-bold rounded-full hover:bg-gray-100 transition-all shadow-lg transform hover:scale-105">
+                        Contact Us Today
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABOUT PAGE ================= -->
+        <section id="about" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 py-20">
+                <div class="text-center mb-16">
+                    <span class="text-brand-primary font-bold tracking-widest uppercase text-sm">Our Team</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-brand-dark mt-2">Meet Heera Chandani</h2>
+                    <p class="text-gray-500 mt-2 italic">M.A. CCC-SLP/L</p>
+                </div>
+
+                <!-- Bio Container -->
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                    
+                    <!-- Top Section: Image & Intro -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+                        <!-- Image Column -->
+                        <div class="lg:col-span-4 h-96 lg:h-auto relative">
+                             <img src="https://lh3.googleusercontent.com/sitesv/AAzXCkeGGIIOZSqeYPrxvZO3dXr-xUIytEYYwOQ-LWXaXGYXnRAG8HbDNZvNpXVjCB2q6OdlGHYgwrp9WT8xlRq0OGBYMUyvqKD-I9KfbW7OodMAeGKe87sEbRRW6EtMR7LtMDnNS7Xjgy4InkqNHSuvRU2PISnnh7mr6o18yG7wFkGRl8MqJ-uadW5Dq0tnjDisRIeor9QxHRfRroMSzmNem_-sVJnfK-qT-cxEV3s=w1280" alt="Heera Chandani" class="w-full h-full object-cover">
+                        </div>
+                        
+                        <!-- Content Column -->
+                        <div class="lg:col-span-8 p-8 md:p-12">
+                            <h3 class="font-serif text-3xl text-brand-dark mb-4">A Legacy of Compassion & Expertise</h3>
+                            <div class="prose prose-blue text-gray-600 leading-relaxed space-y-4">
+                                <p>
+                                    Heera Chandani, M.A. CCC-SLP/L, has been a practicing speech-language pathologist since 2006. She has worked in schools, therapeutic day programs, hospitals, private practices, and in home and community settings with several multidisciplinary teams.
+                                </p>
+                                <p>
+                                    She possesses a wealth of experience working with people of all ages, covering diverse neurological conditions, developmental disabilities, and disorders. Her areas of specialization include: <strong>apraxia of speech, autism spectrum disorder, language delay, ADHD, AAC, auditory processing disorder, executive functioning, cognitive communication disorders, social communication impairments, and bilingual evaluations (Urdu/Hindi-English).</strong>
+                                </p>
+                                <p>
+                                    In addition to therapy, Heera is committed to IEP (Individualized Education Program) and disability advocacy. She takes the time to understand each client's IEP and 504 plans, providing feedback to families and advocating for their needs in school and team meetings.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Middle Section: Detailed Bio -->
+                    <div class="p-8 md:p-12 border-t border-gray-100 bg-brand-warm/30">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div>
+                                <h4 class="font-serif text-xl font-bold text-brand-dark mb-4 border-b border-brand-secondary/30 pb-2 inline-block">Global Vision & Teaching</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                    Heera loves teaching and continues to guest lecture for graduate courses every year at <strong>Northwestern University</strong>. Grounded in a love of learning, she travels internationally to conduct workshops and present at conferences in locations such as India, Egypt, and the U.A.E. She has helped international schools and families access funding, build classrooms, and develop therapeutic programs.
+                                </p>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    Born in the U.S. and raised in Dubai, U.A.E., Heera is multilingual, being fluent and literate in English, Hindi/Urdu, and Sindhi, and literate in Arabic.
+                                </p>
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-xl font-bold text-brand-dark mb-4 border-b border-brand-secondary/30 pb-2 inline-block">Personal Inspiration</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                    Heera committed her life to service at age nine. She has volunteered at Mother Teresa’s Orphanage in India and helped set up special education programs in India and Africa.
+                                </p>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    She has been deeply shaped by her relationship with her younger brother, <strong>Dhiren</strong>, who has a developmental disability. Dhiren continues to be Heera’s greatest motivation. She lives in Chicago with him and, in her free time, enjoys traveling, photography, figure skating, yoga, and reading about neuroplasticity.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Section: Credentials Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 bg-brand-primary text-white">
+                        <div class="p-8 md:p-12 border-r border-brand-secondary/30">
+                            <h4 class="font-serif text-2xl mb-6 flex items-center">
+                                <i class="fa-solid fa-certificate mr-3 text-brand-secondary"></i> Specialized Training
+                            </h4>
+                            <ul class="space-y-2 text-sm text-blue-50">
+                                <li class="flex items-start"><i class="fa-solid fa-check mt-1 mr-2 text-brand-secondary"></i> Executive Functioning</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check mt-1 mr-2 text-brand-secondary"></i> Lindamood Bell: Visualizing and Verbalizing</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check mt-1 mr-2 text-brand-secondary"></i> Social Thinking™ Curriculum</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check mt-1 mr-2 text-brand-secondary"></i> PROMPT (Restructuring Oral Muscular Phonetic Targets)</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check mt-1 mr-2 text-brand-secondary"></i> Dynamic Temporal and Tactile Cueing (DTTC) for CAS</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check mt-1 mr-2 text-brand-secondary"></i> Kauffman Approach to CAS</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check mt-1 mr-2 text-brand-secondary"></i> Hanen Program (It Takes Two to Talk)</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check mt-1 mr-2 text-brand-secondary"></i> Beckman Oral Motor Protocol</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check mt-1 mr-2 text-brand-secondary"></i> Food Chaining (feeding picky eaters)</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check mt-1 mr-2 text-brand-secondary"></i> Structured Teaching (TEACCH Methodology)</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check mt-1 mr-2 text-brand-secondary"></i> PECS & AAC (ALS, LAMP)</li>
+                            </ul>
+                        </div>
+                        <div class="p-8 md:p-12">
+                            <h4 class="font-serif text-2xl mb-6 flex items-center">
+                                <i class="fa-solid fa-microphone-lines mr-3 text-brand-secondary"></i> Speaking Topics
+                            </h4>
+                            <p class="text-sm text-blue-100 mb-4 italic">Heera has presented to school and adult service providers on:</p>
+                            <ul class="space-y-2 text-sm text-blue-50">
+                                <li class="flex items-start"><i class="fa-solid fa-angle-right mt-1 mr-2 text-brand-secondary"></i> Executive Functioning</li>
+                                <li class="flex items-start"><i class="fa-solid fa-angle-right mt-1 mr-2 text-brand-secondary"></i> Functional communication at home & group homes</li>
+                                <li class="flex items-start"><i class="fa-solid fa-angle-right mt-1 mr-2 text-brand-secondary"></i> Interventions for learning challenges (dyslexia)</li>
+                                <li class="flex items-start"><i class="fa-solid fa-angle-right mt-1 mr-2 text-brand-secondary"></i> Technology applications as therapeutic tools</li>
+                                <li class="flex items-start"><i class="fa-solid fa-angle-right mt-1 mr-2 text-brand-secondary"></i> Social communication intervention strategies</li>
+                                <li class="flex items-start"><i class="fa-solid fa-angle-right mt-1 mr-2 text-brand-secondary"></i> Behavior management for Autism</li>
+                                <li class="flex items-start"><i class="fa-solid fa-angle-right mt-1 mr-2 text-brand-secondary"></i> Collaborative work (OTs and SLPs)</li>
+                                <li class="flex items-start"><i class="fa-solid fa-angle-right mt-1 mr-2 text-brand-secondary"></i> Selective Mutism</li>
+                            </ul>
+                            <div class="mt-8 pt-6 border-t border-brand-secondary/30">
+                                <p class="text-sm font-bold text-white">You can schedule her to speak to your team about a specific topic.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Awards Strip -->
+                <div class="mt-12 text-center max-w-4xl mx-auto">
+                    <p class="text-gray-400 text-xs tracking-wider uppercase mb-4">Awards & Recognition</p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs">Presidential Scholar</span>
+                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs">Woman of Western</span>
+                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs">Ambassador for International Peace</span>
+                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs">Hope of the Future</span>
+                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs">Bellingham Herald Diversity</span>
+                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs">Martin Luther King Jr. Award</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SERVICES PAGE ================= -->
+        <section id="services" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 py-20">
+                
+                <!-- What is SLP Section -->
+                <div class="text-center mb-16 max-w-4xl mx-auto">
+                    <span class="text-brand-primary font-bold tracking-widest uppercase text-sm">Our Profession</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-brand-dark mt-2 mb-6">What is Speech Language Pathology?</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        Speech-language pathology is a profession that specializes in the diagnosis and treatment of communication impairments or disorders. This can include speech, language, cognitive, social pragmatic, and swallowing disorders. Speech-language pathologists, also known as speech therapists, specialize in evaluating and treating these deficits.
+                    </p>
+                </div>
+
+                <!-- Mission Section -->
+                <div class="bg-brand-warm rounded-3xl p-8 md:p-12 border border-gray-100 shadow-sm mb-20 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-brand-primary/5 rounded-full -mr-16 -mt-16 z-0"></div>
+                    <div class="relative z-10">
+                        <h3 class="font-serif text-3xl text-brand-dark mb-6">Our Mission</h3>
+                        <p class="text-gray-600 mb-6 italic border-l-4 border-brand-primary pl-4">
+                            Since 2006, our mission is to improve the communication skills of our clients and positively affect their lives. The clinicians at Chandani & Burns, LLC recognize and respect the uniqueness of each child and adult. Clinicians utilize a personalized approach to ensure each client's speech and language treatment is effective and beneficial.
+                        </p>
+                        <p class="text-gray-600 mb-6">
+                            We view each individual as a gift to us, a blessing, a person we serve. We believe that each person has the right to be a productive and successful member of the community, to live a life with purpose, and to THRIVE with dignity and respect in an environment of change and challenge. We EMPOWER individuals and their families by:
+                        </p>
+                        <ul class="space-y-4 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-secondary mt-1 mr-3"></i>
+                                <span>Improving self-awareness and self-advocacy skills.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-secondary mt-1 mr-3"></i>
+                                <span>Providing skilled, effective, functional, collaborative, and individualized patient-centered therapy, resources and support to more fully attain their potential.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-secondary mt-1 mr-3"></i>
+                                <span>Providing education and advocacy to increase understanding, awareness, and supports for individuals with communication difficulties.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-secondary mt-1 mr-3"></i>
+                                <span>Serving families from diverse backgrounds in a culturally sensitive and appropriate manner - We strive to reflect the world in which we live in terms of diversity; we strive to embrace and respect ALL our clients, irrespective of their cultural, racial, and socio-economic backgrounds. In fact, we take into account the client’s cultural perspective and other language and culture influences on communication and pragmatics, during the therapeutic process.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-secondary mt-1 mr-3"></i>
+                                <span>Providing educational opportunities, including workshops and trainings for professionals and families around the globe.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Comprehensive Services List -->
+                <div>
+                    <div class="text-center mb-12">
+                        <h2 class="font-serif text-3xl md:text-4xl text-brand-dark mb-6">Our Services</h2>
+                        <p class="text-gray-600 max-w-3xl mx-auto">
+                            Chandani & Burns, LLC offers a range of <strong class="text-brand-primary">SERVICES</strong> to help children and adults who are experiencing speech, language, and/or social communication challenges. Our specialists are trained to help your loved ones with:
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <!-- List Items -->
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">AAC (Augmentative and Alternative Communication) – Evaluation and Implementation</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">ADHD and Anxiety-Related Language and Communication Difficulties</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Aphasia (after a Stroke or Traumatic Brain Injury)</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Apraxia of Speech and Dysarthria (Motor Speech Disorders)</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Auditory Processing Disorder</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Autism Spectrum Disorder, Cerebral Palsy, Fragile X and Other Developmental Disabilities</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Cognitive-Communication Impairments (Focus, Memory, Executive Functioning)</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Communication difficulties related to Neurological Conditions and Genetic Abnormalities</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Developmental Delays</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Difficulty Remembering Information or Following Directions</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Executive Functioning Disorder (Attention, Organization, Planning, etc.)</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Feeding, Oral-Motor, and Swallowing (Dysphagia)</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Intellectual Disability</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Language Delay, Language Processing, and other Language Impairments</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Late Talking</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Learning Difficulties</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Literacy Skills (Reading and Written Expression)</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Receptive/Expressive Language Disorders</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Selective Mutism</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Speech Sound Disorders (Articulation and Phonological Disorders)</span>
+                        </div>
+                         <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Study Strategies, Academic Strategies</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Stuttering (Fluency Disorders)</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Social Communication (Social Thinking and Perspective-Taking)</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Voice Disorders</span>
+                        </div>
+                        <div class="flex items-start p-2 hover:bg-brand-warm rounded transition-colors">
+                            <i class="fa-solid fa-circle text-[8px] text-brand-primary mt-2 mr-3"></i>
+                            <span class="text-sm text-gray-700">Word Retrieval/Word Finding Difficulties</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= RESOURCES PAGE (Placeholder) ================= -->
+        <section id="resources" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 py-20 text-center">
+                <h2 class="font-serif text-4xl text-brand-dark mb-8">Family Resources</h2>
+                <div class="bg-blue-50 p-12 rounded-xl">
+                    <p class="text-xl text-brand-primary">Helpful guides and forms will be available here soon.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CAREERS PAGE ================= -->
+        <section id="careers" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 py-20">
+                
+                <!-- Header -->
+                <div class="text-center mb-12">
+                    <h2 class="font-serif text-4xl md:text-5xl text-brand-dark mb-4">Join Our Awesome Team!</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">We are growing and seeking exceptional candidates to uphold the high standards our families have for us!</p>
+                </div>
+
+                <!-- Urgent Notice -->
+                <div class="bg-red-50 border-l-4 border-red-400 p-6 mb-12 rounded-r-lg shadow-sm">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 text-red-400 mt-1">
+                            <i class="fa-solid fa-bullhorn text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-bold text-brand-dark uppercase tracking-wide">Current Job Openings: *** Urgent Need ***</h3>
+                            <p class="text-sm text-gray-700 mt-1">To start as soon as possible.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-white border border-red-200 text-red-600 rounded-full text-xs font-bold">1-2 Part-Time SLP (Room to grow)</span>
+                                <span class="px-3 py-1 bg-white border border-red-200 text-red-600 rounded-full text-xs font-bold">Full-Time SLP</span>
+                                <span class="px-3 py-1 bg-white border border-red-200 text-red-600 rounded-full text-xs font-bold">Occupational Therapist (OT)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    
+                    <!-- Left Column: About & Who We Need -->
+                    <div class="space-y-10">
+                        <!-- About the practice -->
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                            <h3 class="font-serif text-2xl text-brand-dark mb-4">About the Practice</h3>
+                            <div class="prose prose-blue text-gray-600 text-sm leading-relaxed space-y-4">
+                                <p>
+                                    Chandani & Burns, LLC is an SLP-owned and operated boutique style clinic in Skokie, IL. We provide clinic- and community-based, and in-school and in-home speech-language and occupational therapy services to children and adults.
+                                </p>
+                                <p>
+                                    Our clinicians specialize in autism, social pragmatics, apraxia, AAC, ADHD, executive functioning, cognitive impairments, and aphasia. We are known for our work with individuals with apraxia and complex communication needs.
+                                </p>
+                                <div class="bg-brand-accent/50 p-4 rounded-lg italic border-l-2 border-brand-primary">
+                                    "As a sibling caregiver of an adult brother with an intellectual disability, Heera Chandani is passionate to bring on people who can truly connect with families and provide the family-centered care that has been essential in her journey with her brother."
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ideal Candidate -->
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                            <h3 class="font-serif text-2xl text-brand-dark mb-4">Who We Are Looking For</h3>
+                            <p class="text-gray-600 mb-4 text-sm">
+                                We are seeking <strong class="text-brand-primary">ENERGETIC</strong>, dynamic, <strong class="text-brand-primary">FUN</strong>, flexible, creative, organized, passionate, <strong class="text-brand-primary">POSITIVE</strong>, solution-focused, and out-of-box thinkers!
+                            </p>
+                            <ul class="space-y-3 text-sm text-gray-600">
+                                <li class="flex items-start"><i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i> Independent self-starters who work collaboratively.</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i> Committed to family-centered, trauma-informed, and neurodiversity-affirming therapy.</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i> Comfortable using technology (including AAC).</li>
+                                <li class="flex items-start"><i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i> Skilled in conducting comprehensive evaluations and educating caregivers.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Qualifications & Perks -->
+                    <div class="space-y-10">
+                        <!-- Qualifications -->
+                        <div class="bg-brand-dark text-white p-8 rounded-2xl shadow-lg relative overflow-hidden">
+                            <div class="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+                            <h3 class="font-serif text-2xl mb-6 relative z-10">Qualifications</h3>
+                            <ul class="space-y-4 text-sm relative z-10 text-gray-300">
+                                <li class="flex items-start">
+                                    <span class="bg-brand-primary/20 p-1 rounded mr-3"><i class="fa-solid fa-graduation-cap text-brand-secondary"></i></span>
+                                    Master’s degree in respective fields from an accredited university.
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-brand-primary/20 p-1 rounded mr-3"><i class="fa-solid fa-id-card text-brand-secondary"></i></span>
+                                    For SLPs: CCCs and active IL state licensure (CF's welcome with 2-year commitment).
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-brand-primary/20 p-1 rounded mr-3"><i class="fa-solid fa-clock text-brand-secondary"></i></span>
+                                    Minimum 1 year experience (Private practice/clinic preferred).
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-brand-primary/20 p-1 rounded mr-3"><i class="fa-solid fa-star text-brand-secondary"></i></span>
+                                    Experience in Early Intervention, Apraxia, Autism, Auditory Processing, & Group Therapy preferred.
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-brand-primary/20 p-1 rounded mr-3"><i class="fa-solid fa-tablet-screen-button text-brand-secondary"></i></span>
+                                    Experience with AAC and instructional technology preferred.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Perks -->
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                            <h3 class="font-serif text-2xl text-brand-dark mb-6">Perks & Benefits</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="flex items-start p-3 bg-brand-warm rounded-lg">
+                                    <i class="fa-solid fa-arrow-trend-up text-brand-primary mt-1 mr-3"></i>
+                                    <span class="text-sm text-gray-600">Growth opportunities & mentorship</span>
+                                </div>
+                                <div class="flex items-start p-3 bg-brand-warm rounded-lg">
+                                    <i class="fa-solid fa-calendar-days text-brand-primary mt-1 mr-3"></i>
+                                    <span class="text-sm text-gray-600">Flexible schedule options</span>
+                                </div>
+                                <div class="flex items-start p-3 bg-brand-warm rounded-lg">
+                                    <i class="fa-solid fa-sack-dollar text-brand-primary mt-1 mr-3"></i>
+                                    <span class="text-sm text-gray-600">Competitive, above-market pay</span>
+                                </div>
+                                <div class="flex items-start p-3 bg-brand-warm rounded-lg">
+                                    <i class="fa-solid fa-laptop-file text-brand-primary mt-1 mr-3"></i>
+                                    <span class="text-sm text-gray-600">Professional development bonuses</span>
+                                </div>
+                                <div class="flex items-start p-3 bg-brand-warm rounded-lg">
+                                    <i class="fa-solid fa-users-gear text-brand-primary mt-1 mr-3"></i>
+                                    <span class="text-sm text-gray-600">Leadership opportunities (Clinic Manager/E.I. Coordinator)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How to Apply CTA -->
+                <div class="mt-16 bg-brand-primary rounded-3xl p-10 text-center text-white shadow-xl transform transition-all hover:scale-[1.01]">
+                    <h3 class="font-serif text-3xl mb-4">Interested in joining us?</h3>
+                    <p class="mb-8 text-blue-100 max-w-2xl mx-auto">
+                        We would love to see a short video (no more than 3 minutes) expressing your interest in this position and/or telling us what is special about you as a speech pathologist.
+                    </p>
+                    
+                    <div class="bg-white/10 p-6 rounded-xl max-w-xl mx-auto backdrop-blur-sm border border-white/20">
+                        <p class="text-sm mb-4 font-bold tracking-wider uppercase">Please email the following:</p>
+                        <ul class="text-left text-sm space-y-2 mb-6 inline-block mx-auto">
+                            <li><i class="fa-regular fa-file-lines mr-2"></i> Letter of interest / Cover Letter</li>
+                            <li><i class="fa-regular fa-address-card mr-2"></i> Resume</li>
+                            <li><i class="fa-solid fa-users mr-2"></i> 3 References</li>
+                            <li><i class="fa-solid fa-video mr-2"></i> Short Video (Optional but encouraged)</li>
+                        </ul>
+                        <div class="block">
+                            <a href="mailto:CHANDANIANDBURNS@GMAIL.COM" class="inline-block bg-white text-brand-primary font-bold py-3 px-8 rounded-full hover:bg-brand-dark hover:text-white transition-all shadow-md">
+                                Email Your Application
+                            </a>
+                        </div>
+                    </div>
+                    <p class="mt-6 text-sm text-blue-200">Qualified candidates will be contacted for an interview.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= TESTIMONIALS PAGE (Placeholder) ================= -->
+<section id="testimonials" class="page-section">
+    <div class="max-w-7xl mx-auto px-4 py-20">
+        <h2 class="font-serif text-4xl text-center text-brand-dark mb-16">What Families Say</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Brittany -->
+            <div class="bg-white p-8 rounded-br-3xl rounded-tl-3xl shadow-sm border border-gray-100">
+                <div class="text-yellow-400 text-xl mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-gray-600 italic mb-6">
+                    Our son, Henry, began working with Heera when he was three years old. Before finding Heera we had been told by a large pediatric therapy group that "because speech will never be his most efficient form of communication" they were not going to focus on sound production or speech. We were devastated. Luckily, we found Heera, who worked tirelessly to help Henry communicate in all ways, including verbal speech.
+                    Through Heera's dedication and ability to engage Henry, we have seen remarkable growth in all areas of communication, especially speech. Heera never gives up, even when Henry's ability to attend is limited, or when he is so frustrated that he refuses tasks. She continues to find interesting ways to engage Henry to get the most out of each session. She holds him to the high standards she knows he is capable of achieving.
+                    Heera truly has a gift and we are so thankful for her commitment and dedication not only to helping our son, but all the children that she is helping to achieve their true potential.
+                </p>
+                <p class="font-bold text-brand-dark">- Brittany</p>
+            </div>
+
+            <!-- Aimee -->
+            <div class="bg-white p-8 rounded-br-3xl rounded-tl-3xl shadow-sm border border-gray-100">
+                <div class="text-yellow-400 text-xl mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-gray-600 italic mb-6">
+                    Chandani and Burns has been working with our son since elementary school for his complex speech language issues. I would not go anywhere else. We have seen tremendous strides thanks to their help. His social pragmatics has improved significantly and he now also receives help with executive functioning for middle school.
+                    Heera is an EXPERT speech therapist and is easily one of the best practitioners I have ever worked with.
+                    She deftly builds rapport with a child. She registers what is important to them and tailors the work to the child's interests, so that they engage in their sessions. She is able to explain goals to her clients (and their parents) and gives concrete avenues to work towards them. She is warm, dedicated and deeply thoughtful. She never seems to run out of ideas, and that gives parents inspiration and hope on difficult days.
+                    She provides in depth evaluations that identify areas of challenge (as well as strength) which can serve as templates for school assistance. She has a wealth of knowledge in child development and has a lot of experience working in the school systems. She is an important advocate to have in any academic meeting. Heera makes time to collaborate with other therapists and professionals, and they have all echoed my own sentiments about how perceptive, smart and special she is. Families will see real positive change when they work with her. She is amazing.
+                </p>
+                <p class="font-bold text-brand-dark">— Aimee</p>
+            </div>
+
+            <!-- Julieta -->
+            <div class="bg-white p-8 rounded-br-3xl rounded-tl-3xl shadow-sm border border-gray-100">
+                <div class="text-yellow-400 text-xl mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-gray-600 italic mb-6">
+                    Heera has been a blessing not only for my son but for our whole family. Her knowledge and ability to provide speech therapy is a step above. She makes everything so clear and easy to understand.
+                    Heera is a great collaborator with my son's treatment team. She is always going one step forward on how to make my son progress farther and faster. She has helped me prepare for school and IEP meetings and it always amazes me the positive impact her recommendations have. She is not just my son's therapist she is one of his best advocates.
+                    Heera is always there to celebrate the little and big victories and also to work with us to make plan adjustments. In this journey where we as parents could feel alone at times, she has always been there for us.
+                </p>
+                <p class="font-bold text-brand-dark">- Julieta</p>
+            </div>
+
+            <!-- Dona -->
+            <div class="bg-white p-8 rounded-br-3xl rounded-tl-3xl shadow-sm border border-gray-100">
+                <div class="text-yellow-400 text-xl mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-gray-600 italic mb-6">
+                    Heera is amazing! We adore her! She has been working with our son for over a year. He has shown great improvement not only in his speech but in his ability to advocate for himself through his words. He has gained a confidence since working with Heera that he did not previously have with the many other speech and language therapists that he had worked with.
+                    Our son would dread any writing assignment, however, since working with Heera he has learned to "Brainstorm, draft, revise, edit and publish" his stories which he loves to now do! Heera is truly a gift, she not only is highly qualified in her field, she possesses an ability to build a trusting bond between herself and her students, and because of that trust, she was able to help our son build a confidence in himself which has helped him participate in school and social activities without anxiety about his speech. He is becoming a great communicator!
+                </p>
+                <p class="font-bold text-brand-dark">- Dona</p>
+            </div>
+
+            <!-- Rivka Varnai -->
+            <div class="bg-white p-8 rounded-br-3xl rounded-tl-3xl shadow-sm border border-gray-100">
+                <div class="text-yellow-400 text-xl mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-gray-600 italic mb-6">
+                    Heera is a highly skilled and dedicated speech and language pathologist. We have collaborated on a number of students over the years and I'm always impressed with how thorough and on target her evaluations and treatment plans are. I notice positive outcomes and measurable improvement in her clients. I like how holistically she approaches each child and looks beyond the areas of speech and language to achieve results and encourage growth. I highly recommend Heera and her staff for your speech and language needs.
+                </p>
+                <p class="font-bold text-brand-dark">- Rivka Varnai, Reading Specialist</p>
+            </div>
+
+            <!-- Jena Doolas -->
+            <div class="bg-white p-8 rounded-br-3xl rounded-tl-3xl shadow-sm border border-gray-100">
+                <div class="text-yellow-400 text-xl mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-gray-600 italic mb-6">
+                    Ms. Chandani approaches the work of supporting children's speech and social needs with a listening ear, an eye on strengths, and a finger on the pulse of where a child begins and who they will become. Collaboration with family, school staff and other related services is paramount for her, allowing the skills she builds with her clients to dovetail within those of the whole team and child.
+                </p>
+                <p class="font-bold text-brand-dark">- Jena Doolas, School Social Worker</p>
+            </div>
+
+            <!-- Kate -->
+            <div class="bg-white p-8 rounded-br-3xl rounded-tl-3xl shadow-sm border border-gray-100">
+                <div class="text-yellow-400 text-xl mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-gray-600 italic mb-6">
+                    Heera has consistently given my daughter's needs thoughtful consideration and has tailored her approach to meet those changing needs. Heera has a gentle yet professional way of handling children who are learning to express themselves. The results we have seen in our daughter have been remarkable and we are thankful for her guidance and expertise.
+                </p>
+                <p class="font-bold text-brand-dark">- Kate</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- ================= CONTACT PAGE ================= -->
+        <section id="contact" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 py-20">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Contact Info -->
+                    <div>
+                        <span class="text-brand-primary font-bold tracking-widest uppercase text-sm">Contact Us</span>
+                        <h2 class="font-serif text-4xl md:text-5xl text-brand-dark mt-2 mb-6">Let's Connect</h2>
+                        <p class="text-gray-600 mb-8 text-lg">
+                            For more information or to schedule an evaluation or therapy session, please contact us.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-brand-primary mt-1">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-brand-dark">Location</h4>
+                                    <p class="text-gray-600">4711 Golf Road, Suite 100<br>Skokie, IL 60076</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-brand-primary mt-1">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-brand-dark">Phone & Fax</h4>
+                                    <p class="text-gray-600">Phone: (847) 679-8635</p>
+                                    <p class="text-gray-600">Fax: (847) 679-8657</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-brand-primary mt-1">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-brand-dark">Email</h4>
+                                    <a href="mailto:CHANDANIANDBURNS@GMAIL.COM" class="text-brand-primary hover:underline">CHANDANIANDBURNS@GMAIL.COM</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+                        <form onsubmit="event.preventDefault(); alert('Thank you for your message. We will contact you soon!');">
+                            <div class="grid grid-cols-1 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                                    <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all" placeholder="Your Name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                    <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all" placeholder="your@email.com">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                                    <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all" placeholder="How can we help you?"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-brand-primary text-white font-bold py-4 rounded-lg hover:bg-brand-dark transition-colors shadow-md">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-700 pb-12">
+                <div>
+                    <h3 class="font-serif text-2xl mb-6">Chandani & Burns</h3>
+                    <p class="text-gray-400 mb-6">Dedicated and compassionate professionals providing speech-language therapy in the North Shore and Chicagoland area.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><button onclick="navigateTo('home')" class="hover:text-white transition-colors">Home</button></li>
+                        <li><button onclick="navigateTo('about')" class="hover:text-white transition-colors">About Us</button></li>
+                        <li><button onclick="navigateTo('services')" class="hover:text-white transition-colors">Services</button></li>
+                        <li><button onclick="navigateTo('contact')" class="hover:text-white transition-colors">Contact</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Contact</h4>
+                    <p class="text-gray-400">4711 Golf Road, Suite 100</p>
+                    <p class="text-gray-400 mb-4">Skokie, IL 60076</p>
+                    <p class="text-brand-secondary">(847) 679-8635</p>
+                </div>
+            </div>
+            <div class="pt-8 text-center text-gray-500 text-sm">
+                &copy; 2024 Chandani and Burns Speech Therapy. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Navigation & Interactivity -->
+    <script>
+        // Simple Navigation Logic
+        function navigateTo(pageId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+                
+                // Optional: Scroll to top of section logic if needed, but for SPA feel, window scroll top is better
+            });
+
+            // Show target section
+            const target = document.getElementById(pageId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Add intersection observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('h2, .group').forEach(el => {
+            observer.observe(el);
+        });
+
+
+        // 💒 1. Disable right-click
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// 💒 2. Disable inspect / save / print shortcuts
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['s','u','p','S','U','P'].includes(e.key)) || // Ctrl+S, Ctrl+U, Ctrl+P
+    e.key === 'F12' ||                                          // DevTools
+    (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key))  // Ctrl+Shift+I/J/C
+  ) {
+    e.preventDefault();
+    sparkle(e.clientX, e.clientY);
+  }
+});
+
+// 💒 3. Block drag saving of images
+document.addEventListener('dragstart', e => e.preventDefault());
+document.querySelectorAll('img').forEach(img => img.setAttribute('draggable', 'false'));
+
+// 💒 4. Disable text selection & copying
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.body.style.userSelect = 'none';
+document.body.style.webkitUserSelect = 'none';
+
+// 💒 5. Detect if DevTools is open
+setInterval(() => {
+  if (
+    window.outerWidth - window.innerWidth > 160 ||
+    window.outerHeight - window.innerHeight > 160
+  ) {
+    document.body.innerHTML = `
+      <div style="text-align:center;margin-top:20%;font-size:2rem;color:#d6336c;">
+        💖 Please close developer tools to continue 💖
+      </div>`;
+  }
+}, 1000);
+
+
+    </script>
+</body>
+</html><script>console.log('Hello JS');</script></body></html>
