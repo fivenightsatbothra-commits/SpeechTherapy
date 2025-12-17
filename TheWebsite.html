@@ -1,0 +1,569 @@
+<html><head><style>body { font-family: monospace; background:#141414; color:#fff; }</style></head><body><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chandani and Burns | Speech-Language Therapy</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#1e293b',
+                        'brand-primary': '#4a6fa5', // Calming Blue
+                        'brand-secondary': '#88b0c8', // Soft Blue
+                        'brand-accent': '#e0f2fe', // Very light blue
+                        'brand-warm': '#f8fafc', // Off white
+                        'brand-text': '#334155',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garmond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                        'fade-in': 'fadeIn 1.5s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* Page Transitions */
+        .page-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .page-section.active {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Hero Overlay */
+        .hero-pattern {
+            background-color: #ffffff;
+            opacity: 0.8;
+            background-image:  radial-gradient(#4a6fa5 0.5px, transparent 0.5px), radial-gradient(#4a6fa5 0.5px, #ffffff 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+        
+        .blob {
+            position: absolute;
+            filter: blur(40px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-sans text-brand-text bg-brand-warm antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="navigateTo('home')">
+                    <div class="w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center text-white mr-3">
+                        <i class="fa-solid fa-comments text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-serif text-2xl font-bold text-brand-dark tracking-wide">Chandani & Burns</h1>
+                        <p class="text-xs text-brand-primary tracking-widest uppercase">Speech Therapy</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <button onclick="navigateTo('home')" class="nav-link text-brand-dark hover:text-brand-primary transition-colors text-sm font-medium uppercase tracking-wider">Home</button>
+                    <button onclick="navigateTo('about')" class="nav-link text-brand-text hover:text-brand-primary transition-colors text-sm font-medium uppercase tracking-wider">About Us</button>
+                    <button onclick="navigateTo('services')" class="nav-link text-brand-text hover:text-brand-primary transition-colors text-sm font-medium uppercase tracking-wider">Services</button>
+                    <button onclick="navigateTo('resources')" class="nav-link text-brand-text hover:text-brand-primary transition-colors text-sm font-medium uppercase tracking-wider">Resources</button>
+                    <button onclick="navigateTo('careers')" class="nav-link text-brand-text hover:text-brand-primary transition-colors text-sm font-medium uppercase tracking-wider">Careers</button>
+                    <button onclick="navigateTo('testimonials')" class="nav-link text-brand-text hover:text-brand-primary transition-colors text-sm font-medium uppercase tracking-wider">Testimonials</button>
+                    <button onclick="navigateTo('contact')" class="px-6 py-2 bg-brand-primary text-white rounded-full hover:bg-brand-dark transition-all transform hover:scale-105 shadow-md text-sm font-medium uppercase tracking-wider">Contact</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-dark hover:text-brand-primary focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <button onclick="navigateTo('home')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-accent rounded-md">Home</button>
+                <button onclick="navigateTo('about')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-accent rounded-md">About Us</button>
+                <button onclick="navigateTo('services')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-accent rounded-md">Services</button>
+                <button onclick="navigateTo('resources')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-accent rounded-md">Resources</button>
+                <button onclick="navigateTo('careers')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-accent rounded-md">Careers</button>
+                <button onclick="navigateTo('testimonials')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-accent rounded-md">Testimonials</button>
+                <button onclick="navigateTo('contact')" class="block w-full text-left px-3 py-3 text-base font-medium text-brand-primary font-bold hover:bg-brand-accent rounded-md">Contact Us</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="pt-24 min-h-screen relative overflow-hidden">
+        
+        <!-- Decorative Background Blobs -->
+        <div class="blob bg-blue-200 w-96 h-96 rounded-full top-0 -left-20"></div>
+        <div class="blob bg-green-100 w-80 h-80 rounded-full bottom-0 -right-20 animation-delay-2000"></div>
+
+        <!-- ================= HOME PAGE ================= -->
+        <section id="home" class="page-section active">
+            <!-- Hero Section -->
+            <div class="relative w-full overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-24 md:pt-20 md:pb-32">
+                    <div class="flex flex-col md:flex-row items-center">
+                        
+                        <!-- Hero Text -->
+                        <div class="w-full md:w-1/2 z-10 animate-fade-in-up">
+                            <div class="inline-block px-4 py-1 mb-6 bg-brand-accent text-brand-primary rounded-full text-xs font-bold tracking-widest uppercase">
+                                Welcome to Chandani & Burns
+                            </div>
+                            <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl font-medium text-brand-dark leading-tight mb-6">
+                                Finding your <br> <span class="text-brand-primary italic">voice</span>, together.
+                            </h2>
+                            <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg">
+                                We are a team of dedicated and compassionate professionals providing in-person and online speech-language therapy in the North Shore and Chicagoland area.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button onclick="navigateTo('contact')" class="px-8 py-4 bg-brand-primary text-white rounded-full font-medium shadow-lg hover:shadow-xl hover:bg-brand-dark transition-all transform hover:-translate-y-1">
+                                    Let's Connect
+                                </button>
+                                <button onclick="navigateTo('services')" class="px-8 py-4 bg-white text-brand-primary border border-brand-primary rounded-full font-medium hover:bg-brand-accent transition-all">
+                                    Our Services
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Hero Image/Graphic -->
+                        <div class="w-full md:w-1/2 mt-12 md:mt-0 relative z-0">
+                            <div class="relative rounded-2xl overflow-hidden shadow-2xl animate-fade-in" style="animation-delay: 0.3s;">
+                                <!-- Placeholder for a warm, professional image -->
+                                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Speech Therapy Session" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/40 to-transparent"></div>
+                                <div class="absolute bottom-6 left-6 text-white">
+                                    <p class="font-serif text-xl italic">"Compassionate Care."</p>
+                                </div>
+                            </div>
+                            <!-- Floating Card -->
+                            <div class="absolute -bottom-6 -left-6 md:-left-10 bg-white p-6 rounded-xl shadow-xl max-w-xs animate-float hidden md:block">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                        <i class="fa-solid fa-child-reaching text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-brand-dark">Pediatric & Adult</p>
+                                        <p class="text-xs text-gray-500">Specialized Therapy</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Grid Section -->
+            <div class="bg-white py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        
+                        <!-- Location Card -->
+                        <div class="group bg-brand-warm rounded-2xl p-8 hover:shadow-lg transition-all border border-gray-100">
+                            <div class="w-12 h-12 bg-brand-primary/10 rounded-xl flex items-center justify-center text-brand-primary mb-6 group-hover:bg-brand-primary group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-location-dot text-xl"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl text-brand-dark mb-4">Visit Us</h3>
+                            <p class="text-gray-600 mb-4">
+                                We are conveniently located in Skokie, with ample parking.
+                            </p>
+                            <address class="not-italic text-gray-800 font-medium">
+                                4711 Golf Road, Suite 100<br>
+                                Skokie, IL 60076
+                            </address>
+                        </div>
+
+                        <!-- Insurance Card -->
+                        <div class="group bg-brand-warm rounded-2xl p-8 hover:shadow-lg transition-all border border-gray-100">
+                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-file-invoice-dollar text-xl"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl text-brand-dark mb-4">Insurance</h3>
+                            <p class="text-gray-600 text-sm mb-4">
+                                We accept <strong>Blue Cross Blue Shield PPO</strong> and <strong>Blue Choice PPO</strong>.
+                            </p>
+                            <p class="text-gray-500 text-xs leading-relaxed">
+                                For other providers, we are out-of-network. Payment is due at time of service; we provide invoices for your submission.
+                            </p>
+                        </div>
+
+                        <!-- Contact Card -->
+                        <div class="group bg-brand-warm rounded-2xl p-8 hover:shadow-lg transition-all border border-gray-100">
+                            <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center text-teal-600 mb-6 group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-envelope text-xl"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl text-brand-dark mb-4">Get in Touch</h3>
+                            <p class="text-gray-600 mb-4">
+                                For more information or to schedule an evaluation.
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <p><i class="fa-solid fa-envelope mr-2 text-brand-primary"></i> <a href="mailto:chandaniandburns@gmail.com" class="hover:underline">chandaniandburns@gmail.com</a></p>
+                                <p><i class="fa-solid fa-phone mr-2 text-brand-primary"></i> (847) 679-8635</p>
+                                <p><i class="fa-solid fa-fax mr-2 text-brand-primary"></i> (847) 679-8657</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Strip -->
+            <div class="bg-brand-primary py-16 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10">
+                    <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
+                    </svg>
+                </div>
+                <div class="max-w-4xl mx-auto text-center px-4 relative z-10">
+                    <h2 class="font-serif text-3xl md:text-4xl text-white mb-6">Ready to start your journey?</h2>
+                    <p class="text-blue-100 mb-8 text-lg">We look forward to seeing you at our Skokie office.</p>
+                    <button onclick="navigateTo('contact')" class="px-10 py-4 bg-white text-brand-primary font-bold rounded-full hover:bg-gray-100 transition-all shadow-lg transform hover:scale-105">
+                        Contact Us Today
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABOUT PAGE (Placeholder) ================= -->
+        <section id="about" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 py-20 text-center">
+                <div class="mb-12">
+                    <span class="text-brand-primary font-bold tracking-widest uppercase text-sm">Our Team</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-brand-dark mt-2">Meet the Therapists</h2>
+                </div>
+                <div class="bg-white p-12 rounded-3xl shadow-sm border border-gray-100 max-w-3xl mx-auto">
+                    <i class="fa-solid fa-user-doctor text-6xl text-brand-secondary mb-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Content Coming Soon</h3>
+                    <p class="text-gray-600">We will update this section with biographies of Chandani and Burns in the next step.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SERVICES PAGE (Placeholder) ================= -->
+        <section id="services" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 py-20">
+                <div class="text-center mb-16">
+                    <h2 class="font-serif text-4xl md:text-5xl text-brand-dark">Our Services</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Comprehensive speech and language therapy tailored to individual needs.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service placeholders -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-4"><i class="fa-solid fa-comment-dots"></i></div>
+                        <h3 class="text-xl font-bold mb-2">Speech Therapy</h3>
+                        <p class="text-gray-500">Articulation and phonology disorders.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center text-pink-600 mb-4"><i class="fa-solid fa-brain"></i></div>
+                        <h3 class="text-xl font-bold mb-2">Language Therapy</h3>
+                        <p class="text-gray-500">Receptive and expressive language delays.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 mb-4"><i class="fa-solid fa-users"></i></div>
+                        <h3 class="text-xl font-bold mb-2">Social Communication</h3>
+                        <p class="text-gray-500">Social skills and pragmatic language.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= RESOURCES PAGE (Placeholder) ================= -->
+        <section id="resources" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 py-20 text-center">
+                <h2 class="font-serif text-4xl text-brand-dark mb-8">Family Resources</h2>
+                <div class="bg-blue-50 p-12 rounded-xl">
+                    <p class="text-xl text-brand-primary">Helpful guides and forms will be available here soon.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CAREERS PAGE (Placeholder) ================= -->
+        <section id="careers" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 py-20 text-center">
+                <h2 class="font-serif text-4xl text-brand-dark mb-8">Join Our Team</h2>
+                <p class="text-gray-600 mb-8">We are always looking for passionate professionals.</p>
+                <button class="px-8 py-3 bg-brand-primary text-white rounded-full">View Openings</button>
+            </div>
+        </section>
+
+        <!-- ================= TESTIMONIALS PAGE (Placeholder) ================= -->
+        <section id="testimonials" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 py-20">
+                <h2 class="font-serif text-4xl text-center text-brand-dark mb-16">What Families Say</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-br-3xl rounded-tl-3xl shadow-sm border border-gray-100">
+                        <div class="text-yellow-400 text-xl mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="text-gray-600 italic mb-6">"Testimonials from happy families will be displayed here."</p>
+                        <p class="font-bold text-brand-dark">- Parent Name</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-br-3xl rounded-tl-3xl shadow-sm border border-gray-100">
+                        <div class="text-yellow-400 text-xl mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="text-gray-600 italic mb-6">"Another wonderful review from a client."</p>
+                        <p class="font-bold text-brand-dark">- Client Name</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACT PAGE ================= -->
+        <section id="contact" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 py-20">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Contact Info -->
+                    <div>
+                        <span class="text-brand-primary font-bold tracking-widest uppercase text-sm">Contact Us</span>
+                        <h2 class="font-serif text-4xl md:text-5xl text-brand-dark mt-2 mb-6">Let's Connect</h2>
+                        <p class="text-gray-600 mb-8 text-lg">
+                            For more information or to schedule an evaluation or therapy session, please contact us.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-brand-primary mt-1">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-brand-dark">Location</h4>
+                                    <p class="text-gray-600">4711 Golf Road, Suite 100<br>Skokie, IL 60076</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-brand-primary mt-1">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-brand-dark">Phone & Fax</h4>
+                                    <p class="text-gray-600">Phone: (847) 679-8635</p>
+                                    <p class="text-gray-600">Fax: (847) 679-8657</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-brand-primary mt-1">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-brand-dark">Email</h4>
+                                    <a href="mailto:CHANDANIANDBURNS@GMAIL.COM" class="text-brand-primary hover:underline">CHANDANIANDBURNS@GMAIL.COM</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+                        <form onsubmit="event.preventDefault(); alert('Thank you for your message. We will contact you soon!');">
+                            <div class="grid grid-cols-1 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                                    <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all" placeholder="Your Name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                    <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all" placeholder="your@email.com">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                                    <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all" placeholder="How can we help you?"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-brand-primary text-white font-bold py-4 rounded-lg hover:bg-brand-dark transition-colors shadow-md">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-700 pb-12">
+                <div>
+                    <h3 class="font-serif text-2xl mb-6">Chandani & Burns</h3>
+                    <p class="text-gray-400 mb-6">Dedicated and compassionate professionals providing speech-language therapy in the North Shore and Chicagoland area.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><button onclick="navigateTo('home')" class="hover:text-white transition-colors">Home</button></li>
+                        <li><button onclick="navigateTo('about')" class="hover:text-white transition-colors">About Us</button></li>
+                        <li><button onclick="navigateTo('services')" class="hover:text-white transition-colors">Services</button></li>
+                        <li><button onclick="navigateTo('contact')" class="hover:text-white transition-colors">Contact</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Contact</h4>
+                    <p class="text-gray-400">4711 Golf Road, Suite 100</p>
+                    <p class="text-gray-400 mb-4">Skokie, IL 60076</p>
+                    <p class="text-brand-secondary">(847) 679-8635</p>
+                </div>
+            </div>
+            <div class="pt-8 text-center text-gray-500 text-sm">
+                &copy; 2024 Chandani and Burns Speech Therapy. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Navigation & Interactivity -->
+    <script>
+        // 💒 1. Disable right-click
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// 💒 2. Disable inspect / save / print shortcuts
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['s','u','p','S','U','P'].includes(e.key)) || // Ctrl+S, Ctrl+U, Ctrl+P
+    e.key === 'F12' ||                                          // DevTools
+    (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key))  // Ctrl+Shift+I/J/C
+  ) {
+    e.preventDefault();
+    sparkle(e.clientX, e.clientY);
+  }
+});
+
+// 💒 3. Block drag saving of images
+document.addEventListener('dragstart', e => e.preventDefault());
+document.querySelectorAll('img').forEach(img => img.setAttribute('draggable', 'false'));
+
+// 💒 4. Disable text selection & copying
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.body.style.userSelect = 'none';
+document.body.style.webkitUserSelect = 'none';
+
+// 💒 5. Detect if DevTools is open
+setInterval(() => {
+  if (
+    window.outerWidth - window.innerWidth > 160 ||
+    window.outerHeight - window.innerHeight > 160
+  ) {
+    document.body.innerHTML = `
+      <div style="text-align:center;margin-top:20%;font-size:2rem;color:#d6336c;">
+        💖 Please close developer tools to continue 💖
+      </div>`;
+  }
+}, 1000);
+        // Simple Navigation Logic
+        function navigateTo(pageId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+                
+                // Optional: Scroll to top of section logic if needed, but for SPA feel, window scroll top is better
+            });
+
+            // Show target section
+            const target = document.getElementById(pageId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Add intersection observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('h2, .group').forEach(el => {
+            observer.observe(el);
+        });
+
+    </script>
+</body>
+</html><script>console.log('Hello JS');</script></body></html>
